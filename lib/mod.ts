@@ -321,7 +321,7 @@ export const fromRgbaHex = (color: string): ColorValue => {
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toRgbaHex = (color: ColorValue): string => {
-	return color.toString(16).padStart(8, '0');
+	return toInteger(color).toString(16).padStart(8, '0');
 };
 
 /**

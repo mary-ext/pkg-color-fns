@@ -7,16 +7,16 @@ import {
 	fromInteger,
 	fromRgba,
 	fromRgbaHex,
+	getAlpha,
+	getAPCAContrastRatio,
 	getAPCALuminance,
 	getAPCATextColor,
-	getAPCAContrastRatio,
-	getAlpha,
 	getBlue,
 	getGreen,
 	getRed,
+	getWCAGContrastRatio,
 	getWCAGLuminance,
 	getWCAGTextColor,
-	getWCAGContrastRatio,
 	invert,
 	lerp,
 	lighten,
@@ -271,15 +271,15 @@ Deno.test('fromRgbaHex', async (t) => {
 
 Deno.test('toRgbaHex', async (t) => {
 	await t.step('should convert to 8-digit rrggbbaa hex colors', () => {
-		const color = fromInteger(0x1083fe7f);
-		assertEquals(toRgbaHex(color), '1083fe7f');
+		const color = fromInteger(0xff0101ff);
+		assertEquals(toRgbaHex(color), 'ff0101ff');
 	});
 });
 
 Deno.test('toRgbHex', async (t) => {
 	await t.step('should convert to 6-digit rrggbb hex colors', () => {
-		const color = fromInteger(0x1083feff);
-		assertEquals(toRgbHex(color), '1083fe');
+		const color = fromInteger(0xff0101ff);
+		assertEquals(toRgbHex(color), 'ff0101');
 	});
 });
 
