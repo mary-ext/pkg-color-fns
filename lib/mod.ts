@@ -295,13 +295,23 @@ export const fromRgbaHex = (color: string): ColorValue => {
 };
 
 /**
- * convert color to hex string representation
+ * convert color to rgba hex string representation
  * @param color color to convert
- * @returns an rgb hex string (rrggbbaa)
+ * @returns an rgba hex string (rrggbbaa)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toRgbaHex = (color: ColorValue): string => {
 	return color.toString(16).padStart(8, '0');
+};
+
+/**
+ * convert color to rgb hex string representation
+ * @param color color to convert
+ * @returns an rgb hex string (rrggbb)
+ */
+/*#__NO_SIDE_EFFECTS__*/
+export const toRgbHex = (color: ColorValue): string => {
+	return (color >>> 8).toString(16).padStart(6, '0');
 };
 
 /**
