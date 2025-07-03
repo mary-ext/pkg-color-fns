@@ -1,8 +1,27 @@
 declare const kColor: unique symbol;
 
+/**
+ * 32-bit integer representing a color
+ * the bytes are ordered as rgba (red, green, blue, alpha).
+ */
 export type ColorValue = number & { [kColor]: true };
 
+/**
+ * tuple of numbers representing an RGBA color
+ * @property r red component (0-255)
+ * @property g green component (0-255)
+ * @property b blue component (0-255)
+ * @property a alpha component (0-1)
+ */
 export type RgbaColor = [r: number, g: number, b: number, a: number];
+
+/**
+ * tuple of numbers representing an HSLA color
+ * @property h hue component (0-360)
+ * @property s saturation component (0-100)
+ * @property l lightness component (0-100)
+ * @property a alpha component (0-1)
+ */
 export type HslaColor = [h: number, s: number, l: number, a: number];
 
 const castAsColor = (color: number): ColorValue => {
@@ -30,10 +49,10 @@ const clampComponent = (value: number): number => {
 	return (Math.max(0, Math.min(255, value))) | 0;
 };
 
-/*
- * get red component from color
- * @param n color to extract from
- * @returns the red component value (0-255)
+/**
+ * gets the red component of a color.
+ * @param color the color to get the red component from
+ * @returns the red component (0-255)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getRed = (color: ColorValue): number => {
@@ -41,9 +60,9 @@ export const getRed = (color: ColorValue): number => {
 };
 
 /**
- * get green component from color
- * @param color color to extract from
- * @returns the green component value (0-255)
+ * gets the green component of a color.
+ * @param color the color to get the green component from
+ * @returns the green component (0-255)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getGreen = (color: ColorValue): number => {
@@ -51,9 +70,9 @@ export const getGreen = (color: ColorValue): number => {
 };
 
 /**
- * get blue component from color
- * @param color color to extract from
- * @returns the blue component value (0-255)
+ * gets the blue component of a color.
+ * @param color the color to get the blue component from
+ * @returns the blue component (0-255)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getBlue = (color: ColorValue): number => {
@@ -61,9 +80,9 @@ export const getBlue = (color: ColorValue): number => {
 };
 
 /**
- * get alpha component from color
- * @param color color to extract from
- * @returns the alpha component value (0-255)
+ * gets the alpha component of a color.
+ * @param color the color to get the alpha component from
+ * @returns the alpha component (0-255)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getAlpha = (color: ColorValue): number => {
@@ -71,10 +90,10 @@ export const getAlpha = (color: ColorValue): number => {
 };
 
 /**
- * set red component of color
- * @param color color to modify
- * @param value new red component value (0-255)
- * @returns a new color with modified red component
+ * sets the red component of a color.
+ * @param color the color to set the red component on
+ * @param value the red component (0-255)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const setRed = (color: ColorValue, value: number): ColorValue => {
@@ -82,10 +101,10 @@ export const setRed = (color: ColorValue, value: number): ColorValue => {
 };
 
 /**
- * set green component of color
- * @param color color to modify
- * @param value new green component value (0-255)
- * @returns a new color with modified green component
+ * sets the green component of a color.
+ * @param color the color to set the green component on
+ * @param value the green component (0-255)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const setGreen = (color: ColorValue, value: number): ColorValue => {
@@ -93,10 +112,10 @@ export const setGreen = (color: ColorValue, value: number): ColorValue => {
 };
 
 /**
- * set blue component of color
- * @param color color to modify
- * @param value new blue component value (0-255)
- * @returns a new color with modified blue component
+ * sets the blue component of a color.
+ * @param color the color to set the blue component on
+ * @param value the blue component (0-255)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const setBlue = (color: ColorValue, value: number): ColorValue => {
@@ -104,10 +123,10 @@ export const setBlue = (color: ColorValue, value: number): ColorValue => {
 };
 
 /**
- * set alpha component of color
- * @param color color to modify
- * @param value new alpha component value (0-255)
- * @returns a new color with modified alpha component
+ * sets the alpha component of a color.
+ * @param color the color to set the alpha component on
+ * @param value the alpha component (0-255)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const setAlpha = (color: ColorValue, value: number): ColorValue => {
@@ -115,9 +134,9 @@ export const setAlpha = (color: ColorValue, value: number): ColorValue => {
 };
 
 /**
- * create a color from a 32-integer
- * @param color 32-bit integer
- * @returns a color value
+ * creates a color from an integer.
+ * @param color the integer to convert
+ * @returns the color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const fromInteger = (color: number): ColorValue => {
@@ -125,9 +144,9 @@ export const fromInteger = (color: number): ColorValue => {
 };
 
 /**
- * convert color to integer representation
- * @param color color to convert
- * @returns color as a 32-bit unsigned integer
+ * converts a color to an integer.
+ * @param color the color to convert
+ * @returns the integer
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toInteger = (color: ColorValue): number => {
@@ -137,12 +156,12 @@ export const toInteger = (color: ColorValue): number => {
 };
 
 /**
- * create a color from rgba components
+ * creates a color from RGBA components.
  * @param r red component (0-255)
  * @param g green component (0-255)
  * @param b blue component (0-255)
- * @param a alpha component (0-255), defaults to 255
- * @returns a color value
+ * @param a alpha component (0-255, defaults to 255)
+ * @returns the color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const fromRgba = (r: number, g: number, b: number, a: number = 0xff): ColorValue => {
@@ -150,9 +169,9 @@ export const fromRgba = (r: number, g: number, b: number, a: number = 0xff): Col
 };
 
 /**
- * convert color to rgba components
- * @param color color to convert
- * @returns a tuple of rgba color
+ * converts a color to RGBA components.
+ * @param color the color to convert
+ * @returns the RGBA components
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toRgba = (color: ColorValue): RgbaColor => {
@@ -170,12 +189,12 @@ const computeRgbComponent = (h: number, l: number, hc: number, o: number): numbe
 };
 
 /**
- * create a color from hsla components
+ * creates a color from HSLA components.
  * @param h hue component (0-360)
  * @param s saturation component (0-100)
  * @param l lightness component (0-100)
- * @param a alpha component (0-255), defaults to 255
- * @returns a color value
+ * @param a alpha component (0-255, defaults to 255)
+ * @returns the color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const fromHsla = (h: number, s: number, l: number, a: number = 0xff): ColorValue => {
@@ -193,9 +212,9 @@ export const fromHsla = (h: number, s: number, l: number, a: number = 0xff): Col
 };
 
 /**
- * convert color to hsla components
- * @param color color to convert
- * @returns a tuple of hsla color
+ * converts a color to HSLA components.
+ * @param color the color to convert
+ * @returns the HSLA components
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toHsla = (color: ColorValue): HslaColor => {
@@ -242,9 +261,10 @@ const hex = (str: string, pos: number): number => {
 };
 
 /**
- * create a color from rgba hex string representation
- * @param color a hex string (formats: rgb, rgba, rrggbb, rrggbbaa)
- * @returns a color value
+ * creates a color from a hex string.
+ * supports 3, 4, 6, and 8 digit hex strings.
+ * @param color the hex string to convert (e.g. "f00", "ff0000", "ff0000ff")
+ * @returns the color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const fromRgbaHex = (color: string): ColorValue => {
@@ -295,9 +315,9 @@ export const fromRgbaHex = (color: string): ColorValue => {
 };
 
 /**
- * convert color to rgba hex string representation
- * @param color color to convert
- * @returns an rgba hex string (rrggbbaa)
+ * converts a color to an 8-digit rgba hex string.
+ * @param color the color to convert
+ * @returns the hex string (e.g. "ff0000ff")
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toRgbaHex = (color: ColorValue): string => {
@@ -305,9 +325,9 @@ export const toRgbaHex = (color: ColorValue): string => {
 };
 
 /**
- * convert color to rgb hex string representation
- * @param color color to convert
- * @returns an rgb hex string (rrggbb)
+ * converts a color to a 6-digit rgb hex string.
+ * @param color the color to convert
+ * @returns the hex string (e.g. "ff0000")
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const toRgbHex = (color: ColorValue): string => {
@@ -315,10 +335,10 @@ export const toRgbHex = (color: ColorValue): string => {
 };
 
 /**
- * lightens a color
- * @param color color to modify
- * @param factor lightness strength, from 0.0 to 1.0
- * @returns a new lightened color
+ * lightens a color by a given factor.
+ * @param color the color to lighten
+ * @param factor the lightening factor (0-1)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const lighten = (color: ColorValue, factor: number): ColorValue => {
@@ -331,10 +351,10 @@ export const lighten = (color: ColorValue, factor: number): ColorValue => {
 };
 
 /**
- * darkens a color
- * @param color color to modify
- * @param factor darkness strength, from 0.0 to 1.0
- * @returns a new darkened color
+ * darkens a color by a given factor.
+ * @param color the color to darken
+ * @param factor the darkening factor (0-1)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const darken = (color: ColorValue, factor: number): ColorValue => {
@@ -347,10 +367,10 @@ export const darken = (color: ColorValue, factor: number): ColorValue => {
 };
 
 /**
- * inverts a color
- * @param color color to modify
- * @param factor inversion strength
- * @returns a new color resulting from the inversion
+ * inverts a color by a given factor.
+ * @param color the color to invert
+ * @param factor the inversion factor (0-1)
+ * @returns the new color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const invert = (color: ColorValue, factor: number): ColorValue => {
@@ -367,12 +387,12 @@ const blendComponent = (a: number, b: number, factor: number, gamma: number) => 
 };
 
 /**
- * blend two colors together
- * @param a first color
- * @param b second color
- * @param factor blend strength, from 0.0 to 1.0
- * @param gamma gamma correction, from 0.0 to 1.0, defaults to 1.0
- * @returns a new color resulting from the blend
+ * blends two colors together.
+ * @param a the first color
+ * @param b the second color
+ * @param factor the blend factor (0-1)
+ * @param gamma the gamma correction value (defaults to 1.0)
+ * @returns the blended color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const blend = (a: ColorValue, b: ColorValue, factor: number, gamma = 1.0): ColorValue => {
@@ -384,11 +404,11 @@ export const blend = (a: ColorValue, b: ColorValue, factor: number, gamma = 1.0)
 };
 
 /**
- * linearly interpolate between two colors
- * @param a first color
- * @param b second color
- * @param t interpolation factor, from 0.0 to 1.0
- * @returns a new color resulting from the interpolation
+ * linearly interpolates between two colors.
+ * @param a the first color
+ * @param b the second color
+ * @param t the interpolation factor (0-1)
+ * @returns the interpolated color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const lerp = (a: ColorValue, b: ColorValue, t: number): ColorValue => {
@@ -406,9 +426,9 @@ const linearize = (value: number): number => {
 };
 
 /**
- * calculate the relative luminance of a color, according to WCAG 2.1 specification
- * @param color color to calculate luminance for
- * @returns relative luminance value (0.0 to 1.0)
+ * gets the WCAG luminance of a color.
+ * @param color the color to get the luminance from
+ * @returns the luminance (0-1)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getWCAGLuminance = (color: ColorValue): number => {
@@ -420,9 +440,9 @@ export const getWCAGLuminance = (color: ColorValue): number => {
 };
 
 /**
- * calculate the relative luminance of a color, according to APCA 0.1.9 specification
- * @param color color to calculate luminance for.
- * @returns relative luminance value (0.0 to 1.0)
+ * gets the APCA luminance of a color.
+ * @param color the color to get the luminance from
+ * @returns the luminance (0-1)
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getAPCALuminance = (color: ColorValue): number => {
@@ -444,10 +464,10 @@ export const getAPCALuminance = (color: ColorValue): number => {
 };
 
 /**
- * calculate the contrast ratio between two colors, according to WCAG 2.0 specification
- * @param a background color
- * @param b text color
- * @returns contrast ratio between 1 and 21
+ * gets the WCAG contrast ratio between two colors.
+ * @param a the first color
+ * @param b the second color
+ * @returns the contrast ratio
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getWCAGContrastRatio = (a: ColorValue, b: ColorValue): number => {
@@ -461,10 +481,10 @@ export const getWCAGContrastRatio = (a: ColorValue, b: ColorValue): number => {
 };
 
 /**
- * calculate the contrast ratio between two colors, according to APCA 0.1.9 specification
- * @param a background color
- * @param b text color
- * @returns contrast ratio, positive for dark text on light background, negative for light text on dark background.
+ * gets the APCA contrast ratio between two colors.
+ * @param a the first color
+ * @param b the second color
+ * @returns the contrast ratio
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getAPCAContrastRatio = (a: ColorValue, b: ColorValue): number => {
@@ -501,9 +521,9 @@ export const getAPCAContrastRatio = (a: ColorValue, b: ColorValue): number => {
 };
 
 /**
- * determine the appropriate text color for a background color, using WCAG 2.0 specification
- * @param color background color to determine the text color for
- * @returns a color value that is either black or white
+ * gets the WCAG recommended text color (black or white) for a given background color.
+ * @param color the background color
+ * @returns the recommended text color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getWCAGTextColor = (color: ColorValue): ColorValue => {
@@ -517,9 +537,9 @@ export const getWCAGTextColor = (color: ColorValue): ColorValue => {
 };
 
 /**
- * determine the appropriate text color for a background color, using APCA 0.1.9 specification
- * @param color the background color to determine the text color for
- * @returns a color value that is either black or white
+ * gets the APCA recommended text color (black or white) for a given background color.
+ * @param color the background color
+ * @returns the recommended text color
  */
 /*#__NO_SIDE_EFFECTS__*/
 export const getAPCATextColor = (color: ColorValue): ColorValue => {
