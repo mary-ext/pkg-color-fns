@@ -27,7 +27,7 @@ const fromRgbaRaw = (r: number, g: number, b: number, a: number): ColorValue => 
 };
 
 const clampComponent = (value: number): number => {
-	return Math.max(0, Math.min(255, value));
+	return (Math.max(0, Math.min(255, value))) | 0;
 };
 
 /*
